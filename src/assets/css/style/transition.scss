@@ -1,0 +1,21 @@
+
+.fade-transform-leave-active {
+  transition: $base-transition;
+}
+.fade-transform-enter-active {
+  transition: $base-transition;
+}
+
+.fade-transform-enter {
+  display: block;
+  opacity: 0;
+  // transform: translateX(-30px);
+  transform: translateY(-30px);
+}
+
+.fade-transform-leave-to {
+  // display: none;
+  opacity: 0;
+  // transform: translateX(30px);
+  transform: translateY(30px);
+}
