@@ -123,11 +123,6 @@ export default {
 
 <style lang="scss" scoped>
 .word-cloud {
-  #main {
-    width: 300px;
-    height: 500px;
-  }
-
   .cloud {
     margin-top: 20px;
   }

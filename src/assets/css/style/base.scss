@@ -1,0 +1,48 @@
+
+
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+
+/*安全区适配start*/
+/*//iphoneX、iphoneXs*/
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .fix-bottom {
+    box-sizing: border-box;
+    padding-bottom: px(26) !important;
+  }
+
+  .fix-top {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top) !important;
+  }
+}
+/*//iphone Xs Max*/
+@media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio:3) {
+  .fix-bottom {
+    box-sizing: border-box;
+    padding-bottom: px(26) !important;
+  }
+
+  .fix-top {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top) !important;
+  }
+}
+/*//iphone XR*/
+@media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio:2) {
+  .fix-bottom {
+    box-sizing: border-box;
+    padding-bottom: px(26) !important;
+  }
+
+  .fix-top {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top) !important;
+  }
+}
+
+
+

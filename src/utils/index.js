@@ -15,11 +15,11 @@ function changePx(count) {
 }
 
 // 防抖中心思想：如果频繁操作，在setTimeout未执行前就clearTimeout，则当前setTimeout就不会执行。
-function debounce (method, delay) {
+function debounce(method, delay) {
   let timer = null
   return function () {
     let self = this,
-        args = arguments
+      args = arguments
 
     timer && clearTimeout(timer)
     timer = setTimeout(function () {
@@ -33,7 +33,7 @@ function debounce (method, delay) {
 }
 
 // 节流：如果频繁操作，在setTimeout未执行前就clearTimeout，则当前setTimeout就不会执行。
-function throttle (method, duration) {
+function throttle(method, duration) {
   let timer = null
   let startTime = new Date()
 
@@ -105,7 +105,7 @@ function getStorage(key, subKey) {
 }
 
 // 判断是否是pc端
-function isPC(){
+function isPC() {
   let userAgentInfo = navigator.userAgent;
   let Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
   let flag = true;
@@ -116,7 +116,7 @@ function isPC(){
 }
 
 //设置页面rem
-function setRem (baseVal = 10) {
+function setRem(baseVal = 10) {
   const win = window
   const doc = document
 
@@ -145,8 +145,8 @@ function setRem (baseVal = 10) {
   }
   pushPage(this, options)
 */
-function pushPage (vueObj, options) {
-  
+function pushPage(vueObj, options) {
+
   let name = options.name || {}
   let query = options.query || {}
   let params = options.params || {}
@@ -172,8 +172,8 @@ function pushPage (vueObj, options) {
   }
   replacePage(this, options, 'moveR') // 转场动画类型（router-fade:渐入渐出；moveR:从右向左；moveUp:从下往上；now:立刻跳转，无任何转场）
 */
-function replacePage (vueObj, options) {
-  
+function replacePage(vueObj, options) {
+
   let name = options.name || {}
   let query = options.query || {}
   let params = options.params || {}
@@ -185,6 +185,17 @@ function replacePage (vueObj, options) {
   }).catch((err) => {
     console.log('vue-router捕获catch，不必在意：', err)
   })
+}
+
+/* 禁止整个页面滚动
+  stopScroll(true)
+*/
+function stopScroll(control = true) {
+  if (control) {
+    $('body').addClass('overflow-hidden')
+  } else {
+    $('body').removeClass('overflow-hidden')
+  }
 }
 
 
@@ -202,4 +213,5 @@ export {
   setRem,
   pushPage,
   replacePage,
+  stopScroll,
 };

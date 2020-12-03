@@ -6,6 +6,7 @@ const EmptyLayout = () => import(/* webpackChunkName: "EmptyLayout" */ '@/compon
 
 // elementUi
 const Button = () => import(/* webpackChunkName: "Layout" */ '@/views/elementUi/Button.vue') // webpack的魔法注释，将拆分出的js命名为Layout
+const Table = () => import(/* webpackChunkName: "Table" */ '@/views/elementUi/Table.vue') // webpack的魔法注释，将拆分出的js命名为Table
 
 // 项目常用方案
 const Dialog = () => import(/* webpackChunkName: "Dialog" */ '@/views/self/Dialog.vue') // webpack的魔法注释，将拆分出的js命名为Dialog
@@ -30,18 +31,26 @@ const routes = [
             {
                 path: 'layout',
                 name: 'layout',
-                redirect: '/elementUi/layout/layout-1',
+                redirect: '/elementUi/layout/button',
                 component: EmptyLayout,
                 meta: {
                     title: "常用组件",
                 },
                 children: [
                     {
-                        path: 'layout-1',
-                        name: 'layout-1',
+                        path: 'button',
+                        name: 'button',
                         component: Button,
                         meta: {
                             title: "button及icon",
+                        }
+                    },
+                    {
+                        path: 'table',
+                        name: 'table',
+                        component: Table,
+                        meta: {
+                            title: "表格",
                         }
                     },
                 ]
