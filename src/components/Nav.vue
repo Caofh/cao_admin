@@ -124,8 +124,9 @@ export default {
         }
 
         return {
-          width: Number(nodeInfo.width) - 26 * 2,
-          left: Number(nodeInfo.p_left) + 26,
+          width:
+            nodeInfo && nodeInfo.width ? Number(nodeInfo.width) - 26 * 2 : 0,
+          left: nodeInfo && nodeInfo.p_left ? Number(nodeInfo.p_left) + 26 : 0,
         };
       });
 
