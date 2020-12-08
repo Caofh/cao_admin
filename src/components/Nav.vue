@@ -126,7 +126,7 @@ export default {
         return {
           width:
             nodeInfo && nodeInfo.width ? Number(nodeInfo.width) - 26 * 2 : 0,
-          left: nodeInfo && nodeInfo.p_left ? Number(nodeInfo.p_left) + 26 : 0,
+          left: nodeInfo && nodeInfo.p_left ? Number(nodeInfo.p_left) + 26 : 26,
         };
       });
 
