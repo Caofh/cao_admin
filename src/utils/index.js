@@ -1,4 +1,6 @@
 
+import cookie from 'component-cookie' // 第三方cookie插件：首页地址：https://github.com/component/cookie#readme
+
 //返回传递给他的任意对象的类(返回：array、object、number、string)
 function typeOf(o) {
   if (o === null) return "Null";
@@ -198,7 +200,106 @@ function stopScroll(control = true) {
   }
 }
 
+/* 加载img，完成后执行then后的逻辑
+  let imgUrl = 'https://tpdoc.cn/erp/uploads/image/cut_133301_3487.png'
+  loadImage(imgUrl).then((url) => {
+    console.log(url)
+  })
+*/
+function loadImage(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = url;
+    if (img.complete) {
+      resolve(url)
+      return
+    }
+    img.onload = () => {
+      resolve(url)
+    }
+    img.onerror = () => {
+      resolve(url)
+    }
+  })
+}
 
+// 浏览器返回上一页
+function goBack(cache = false) {
+  if (cache) {
+    // 暂存上一页的input值
+    window.history.go(-1)
+  } else {
+    // 不暂存上一页的input值，全部刷新
+    window.history.back(-1)
+  }
+}
+
+// 当前页面history数量
+function historyLen() {
+  return window.history.length
+}
+
+// 第三方cookie插件：首页地址：https://github.com/component/cookie#readme
+/* 设置cookie
+  用法一：
+  setCookie('topay_cli_manage_name', '123')
+
+  用法二：
+  setCookie('topay_cli_manage_name', '123', {
+    path: /abc/,
+    maxage: 60000, // 过期时间（毫秒）
+  })
+*/
+function setCookie(key, value, config) {
+  if (!/^topay_cli_manage_.*/.test(key)) {
+    throw new Error(
+      'hr_smart_项目设置localStorage的key值最必须以"hr_smart_"开头，请修改!'
+    )
+  }
+
+  let defaultConfig = {
+    path: '/'
+  }
+  Object.assign(defaultConfig, config)
+
+  cookie(key, value, defaultConfig)
+}
+
+/*
+  用法一：
+  clearCookie('htopay_cli_manage_name')
+
+  用法二：
+  clearCookie('htopay_cli_manage_name', {
+    path: /abc/,
+  })
+*/
+function clearCookie(key, config = {}) {
+  if (!/^topay_cli_manage_.*/.test(key)) {
+    throw new Error(
+      'hr_smart_项目设置localStorage的key值最必须以"hr_smart_"开头，请修改!'
+    )
+  }
+
+  let defaultConfig = {
+    path: '/'
+  }
+  Object.assign(defaultConfig, config)
+  cookie(key, null, defaultConfig)
+}
+
+/* 获取cookie
+  getCookie('topay_cli_manage_name')
+*/
+function getCookie(key) {
+  if (!/^topay_cli_manage_.*/.test(key)) {
+    throw new Error(
+      'hr_smart_项目设置localStorage的key值最必须以"hr_smart_"开头，请修改!'
+    )
+  }
+
+  return cookie(key)
+}
 
 
 export {
@@ -214,4 +315,10 @@ export {
   pushPage,
   replacePage,
   stopScroll,
+  loadImage,
+  goBack,
+  historyLen,
+  setCookie,
+  getCookie,
+  clearCookie,
 };

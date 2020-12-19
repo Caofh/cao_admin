@@ -54,12 +54,14 @@ export default {
     width: 500px;
     height: 500px;
     padding: 20px;
+    // background: #fff;
   }
   .dia-inner-scroll {
     box-sizing: border-box;
     width: 500px;
     height: 2000px;
     padding: 20px;
+    // background: #fff;
   }
 }
 </style>
