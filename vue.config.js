@@ -135,7 +135,7 @@ module.exports = {
     // css配置处理
     css: {
         // 是否使用css分离插件 ExtractTextPlugin；true：页面css独立分割，false：页面css同一打包；
-        extract: true,
+        extract: processEnv === 'development' ? false : true,
         // 开启 CSS source maps（默认false）线上关闭，测试和本地开启
         sourceMap: isPro ? false : true,
         // css预设器配置项
