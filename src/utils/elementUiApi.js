@@ -9,7 +9,7 @@
   })
 
 */
-function modelConfirm (vueObj, message = '二次确认您的操作') {
+function modelConfirm(vueObj, message = '二次确认您的操作') {
   return new Promise((resolve, reject) => {
     vueObj.$confirm(message, '温馨提示', {
       confirmButtonText: '确定',
@@ -34,9 +34,9 @@ function modelConfirm (vueObj, message = '二次确认您的操作') {
 
   eleToast(this, '操作成功', type)
 
-*/ 
+*/
 // 参数：type：'success', 'error', 'warning', ''(空字符串)
-function eleToast (vueObj, message = '操作成功', type = '') {
+function eleToast(vueObj, message = '操作成功', type = '') {
 
   if (!type) {
     vueObj.$message(message)

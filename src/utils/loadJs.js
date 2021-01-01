@@ -1,5 +1,33 @@
 
-import { sourceJs } from "@/config/base.config"; // 页面需要动态加载js文件
+/*
+  // 需要的第三方插件url集合,js资源结构
+  const sourceJs = {
+    eruda: {
+      name: 'eruda', //页面调试工具；文档：https://github.com/liriliri/eruda
+      global: 'eruda',
+      ver: '0.0.1',
+      isLoad: true,
+      cache: false,
+      // src: 'https://mstatic.secooimg.com/activity2018/js/comm/eruda.min.js'
+      // src: 'https://cdn.jsdelivr.net/npm/eruda'
+      src: `${gateWay.pluginsHost}/plugins/eruda/eruda.min.js`,
+    },
+  }
+
+  // 需要的第三方插件url集合,css资源结构
+  const sourceCss = {
+    element: { // 文档：http://momentjs.cn/
+      name: 'momentCss',
+      global: 'momentCss', // 第三方插件的全局变量名，用于避免重复加载
+      ver: '0.0.1',
+      isLoad: true,
+      cache: false,
+      src: 'https://unpkg.com/element-ui@2.14.1/lib/theme-chalk/index.css'
+      // src: `${gateWay.pluginsHost}/plugins/moment/moment.min.js`,
+    },
+  }
+*/
+import { sourceJs, sourceCss } from "@/config/base.config"; // 页面需要动态加载js文件，资源合集
 
 const win = window
 const doc = document
@@ -36,6 +64,22 @@ const tools = {
     (head || document.body).appendChild(script);
 
   },
+  creatDomCss(option) {
+    let attrs = option.attrs;
+    var link = document.createElement('link');
+    let callBack = option.callBack
+
+    link.rel = 'stylesheet';
+    link.href = attrs.url
+    //重点！！！！script加载成功
+    link.onload = function () {
+      callBack && callBack();
+
+    };
+    var head = document.getElementsByTagName('head')[0];
+    (head || document.body).appendChild(link);
+
+  },
 
   loadJs(urls, callback) {
 
@@ -51,6 +95,44 @@ const tools = {
         attrs: {
           name: curUrl.name || 'js',
           // html: res,
+          url: curUrl.src,
+          async: curUrl.async,
+        },
+        callBack: function () {
+
+          jsDone = curI === maxI - 1
+          callback && jsDone && callback()
+
+          //开始加载下一个
+          curI++
+          (curI < maxI) && loadFn(urls[curI])
+
+        }
+      })
+
+    }
+
+    const loadFn = (curJsData) => {
+      loadCallback(curJsData)
+    }
+
+    loadFn(urls[curI])
+
+  },
+
+  loadCss(urls, callback) {
+
+    const maxI = urls.length // 加载js的数量
+    let jsDone = false // 所有js加载状态
+    let curI = 0 // 加载js的当前索引
+
+    //每个js加载完成后的回调
+    const loadCallback = (res) => {
+      const curUrl = urls[curI]
+      tools.typeOf(curUrl) === 'object' && curUrl.isLoad && this.creatDomCss({
+        dom: 'link',
+        attrs: {
+          name: curUrl.name || 'css',
           url: curUrl.src,
           async: curUrl.async,
         },
@@ -216,7 +298,129 @@ function initAsyn_promise(jsList = []) {
 
 }
 
+/* 自定义动态加载css方法(支持jsList:字符串、对象、数组)，示例如下
+  initAsyn([
+    'bscroll',
+    {
+      name: 'bscroll',
+      global: 'BScroll',
+      ver: '0.0.1',
+      isLoad: true,
+      cache: false,
+      src: 'https://mstatic.secooimg.com/js/bscroll.min.js'
+    },
+    [
+      {
+        name: 'bscroll',
+        global: 'BScroll',
+        ver: '0.0.1',
+        isLoad: true,
+        cache: false,
+        src: 'https://mstatic.secooimg.com/js/bscroll.min.js'
+      },
+      {
+        name: 'bscroll',
+        global: 'BScroll',
+        ver: '0.0.1',
+        isLoad: true,
+        cache: false,
+        src: 'https://mstatic.secooimg.com/js/bscroll.min.js'
+      }
+    ]
+  ], () => {
+    console.log('加载完毕')
+  })
+*/
+function initAsynCss(cssList = [], callback) {
+
+  // css加载列表
+  let concatCssListArr = []
+
+  cssList.map((item) => {
+    if (tools.typeOf(item) === 'string') {
+      // 禁止页面重复加载第三方js逻辑
+      if (!sourceCss[item].global || !window[sourceCss[item].global]) {
+        concatCssListArr.push(sourceCss[item])
+      }
+    } else if (tools.typeOf(item) === 'object') {
+      // 禁止页面重复加载第三方js逻辑
+      if (!item.global || !window[item.global]) {
+        concatCssListArr.push(item)
+      }
+    } else if (tools.typeOf(item) === 'array') {
+      concatCssListArr = [].concat(concatCssListArr, item)
+
+      // 禁止页面重复加载第三方js逻辑
+      concatCssListArr.map((item) => {
+        return !item.global || !window[item.global]
+      })
+    }
+  })
+
+  // 加载所有对应的js
+  if (concatCssListArr.length) {
+    tools.loadCss(concatCssListArr, () => {
+      // 所有js加载完毕后的回调
+      if (callback) {
+        console.log('自定义动态js加载完毕(本次动态加载' + cssList.length + '个js):', cssList)
+        callback()
+      }
+    })
+  } else {
+    callback && callback()
+  }
+
+}
+
+/*
+ initAsynCss的promise版本
+*/
+function initAsynCss_promise(cssList = []) {
+
+  return new Promise((resolve, reject) => {
+
+    // js加载列表
+    let concatCssListArr = []
+
+    cssList.map((item) => {
+      if (tools.typeOf(item) === 'string') {
+        // 禁止页面重复加载第三方js逻辑
+        if (!sourceCss[item].global || !window[sourceCss[item].global]) {
+          concatCssListArr.push(sourceCss[item])
+        }
+      } else if (tools.typeOf(item) === 'object') {
+        // 禁止页面重复加载第三方js逻辑
+        if (!item.global || !window[item.global]) {
+          concatCssListArr.push(item)
+        }
+      } else if (tools.typeOf(item) === 'array') {
+        concatCssListArr = [].concat(concatCssListArr, item)
+
+        // 禁止页面重复加载第三方js逻辑
+        concatCssListArr.map((item) => {
+          return !item.global || !window[item.global]
+        })
+      }
+    })
+
+    // 加载所有对应的js
+    if (concatCssListArr.length) {
+      tools.loadCss(concatCssListArr, () => {
+        // 所有js加载完毕后的回调
+        console.log('自定义动态js加载完毕(本次动态加载' + cssList.length + '个js):', cssList)
+        resolve()
+      })
+    } else {
+      resolve()
+    }
+
+  })
+
+}
+
 export {
   initAsyn,
   initAsyn_promise,
+  initAsynCss,
+  initAsynCss_promise,
 }
