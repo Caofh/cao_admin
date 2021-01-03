@@ -3,7 +3,7 @@
     <div class="left c-flex-x-start">
       <!-- logo -->
       <div class="logo c-flex-x-start">
-        <div class="logo-inner" @click="goHome">demo项目</div>
+        <div class="logo-inner" @click="goHome">cao-admin</div>
       </div>
 
       <!-- nav核心部分 -->

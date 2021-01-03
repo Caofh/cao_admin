@@ -19,14 +19,14 @@
       <el-table-column prop="province" label="省份" width="200">
       </el-table-column>
       <el-table-column prop="city" label="市区" width="200"> </el-table-column>
-      <el-table-column prop="address" label="地址"> </el-table-column>
+      <el-table-column prop="address" label="地址" width="300">
+      </el-table-column>
       <el-table-column prop="zip" label="邮编" width="200"> </el-table-column>
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
           <el-button @click="handleClick(scope.row)" type="text" size="small"
             >查看</el-button
           >
-          <el-button type="text" size="small">编辑</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -77,7 +77,8 @@ export default {
         {
           date: "2016-05-02",
           name: "王小虎",
-          imgUrl: "http://lorempixel.com/640/480/animals",
+          imgUrl:
+            "http://118.190.207.166:8890/uploads/image/cut_071918_8935.png",
           province: "上海",
           city: "普陀区",
           address: "上海市普陀区金沙江路 1518 弄",
@@ -86,7 +87,8 @@ export default {
         {
           date: "2016-05-04",
           name: "王小虎",
-          imgUrl: "http://lorempixel.com/640/480/animals",
+          imgUrl:
+            "http://118.190.207.166:8890/uploads/image/cut_071918_8935.png",
           province: "上海",
           city: "普陀区",
           address: "上海市普陀区金沙江路 1517 弄",
@@ -95,7 +97,8 @@ export default {
         {
           date: "2016-05-01",
           name: "王小虎",
-          imgUrl: "http://lorempixel.com/640/480/animals",
+          imgUrl:
+            "http://118.190.207.166:8890/uploads/image/cut_071918_8935.png",
           province: "上海",
           city: "普陀区",
           address: "上海市普陀区金沙江路 1519 弄",
@@ -104,7 +107,8 @@ export default {
         {
           date: "2016-05-03",
           name: "王小虎",
-          imgUrl: "http://lorempixel.com/640/480/animals",
+          imgUrl:
+            "http://118.190.207.166:8890/uploads/image/cut_071918_8935.png",
           province: "上海",
           city: "普陀区",
           address: "上海市普陀区金沙江路 1516 弄",
@@ -178,6 +182,10 @@ export default {
 <style lang="scss" scoped>
 .Table-container {
   .table-list {
+    /deep/ td {
+      padding: 4px 0;
+    }
+
     .img {
       width: 50px;
       height: 50px;

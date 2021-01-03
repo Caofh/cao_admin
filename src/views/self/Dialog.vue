@@ -17,6 +17,16 @@
     >
       <div class="dia-inner-scroll">可滚动弹窗</div>
     </Dialog>
+
+    <!-- <Dialog
+      v-model="showScroll"
+      v-title="'我是标题'"
+      scroll
+      :type="'fade'"
+      :bg="false"
+    >
+      <div class="dia-inner-scroll">可滚动弹窗</div>
+    </Dialog> -->
   </div>
 </template>
 

@@ -59,7 +59,21 @@ const sourceJs = {
   },
 }
 
+// 需要的第三方插件url集合,css资源结构
+const sourceCss = {
+  element: { // 文档：http://momentjs.cn/
+    name: 'momentCss',
+    global: 'momentCss', // 第三方插件的全局变量名，用于避免重复加载
+    ver: '0.0.1',
+    isLoad: true,
+    cache: false,
+    src: 'https://unpkg.com/element-ui@2.14.1/lib/theme-chalk/index.css'
+    // src: `${gateWay.pluginsHost}/plugins/moment/moment.min.js`,
+  },
+}
+
 export {
   errMsg,
   sourceJs,
+  sourceCss,
 }

@@ -14,6 +14,10 @@ Object.keys(directives).map(key => {
   Vue.directive(key, directives[key])
 })
 
+// 扩展常用公共方法
+import elementUiDialog from '@/utils/elementUiDialog.js'
+Object.assign(Vue.prototype, elementUiDialog)
+
 import 'normalize.css'; // 引用基础兼容性css，normalize.css；文档：https://github.com/necolas/normalize.css
 import './assets/css/style/index.scss'; // 引用全局样式类
 

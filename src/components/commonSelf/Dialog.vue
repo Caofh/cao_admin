@@ -31,7 +31,7 @@
   bg：是否含有默认内容背景色（白色）；true：有背景色；false：无背景色；默认true；
 
   // 使用方法：
-  <Dialog v-model="show" v-title="'我是标题'" scroll :type="'fade'">
+  <Dialog v-model="show" v-title="'我是标题'" scroll :type="'fade'" :bg="false">
     <div class="dia-inner">123</div>
   </Dialog>
 */

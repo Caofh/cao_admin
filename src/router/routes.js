@@ -5,8 +5,13 @@
 const EmptyLayout = () => import(/* webpackChunkName: "EmptyLayout" */ '@/components/EmptyLayout.vue') // webpack的魔法注释，将拆分出的js命名为EmptyLayout
 
 // elementUi
-const Button = () => import(/* webpackChunkName: "Layout" */ '@/views/elementUi/Button.vue') // webpack的魔法注释，将拆分出的js命名为Layout
-const Table = () => import(/* webpackChunkName: "Table" */ '@/views/elementUi/Table.vue') // webpack的魔法注释，将拆分出的js命名为Table
+const Button = () => import(/* webpackChunkName: "Layout" */ '@/views/elementUi/button/Button.vue') // webpack的魔法注释，将拆分出的js命名为Layout
+const Table = () => import(/* webpackChunkName: "Table" */ '@/views/elementUi/table/Table.vue') // webpack的魔法注释，将拆分出的js命名为Table
+const Role = () => import(/* webpackChunkName: "Role" */ '@/views/elementUi/table/role/Role.vue') // webpack的魔法注释，将拆分出的js命名为Role
+const LineEdit = () => import(/* webpackChunkName: "LineEdit" */ '@/views/elementUi/table/LineEdit.vue') // webpack的魔法注释，将拆分出的js命名为LineEdit
+const Map = () => import(/* webpackChunkName: "Map" */ '@/views/elementUi/map/Map.vue') // webpack的魔法注释，将拆分出的js命名为Map
+const Form = () => import(/* webpackChunkName: "Form" */ '@/views/elementUi/form/Form.vue') // webpack的魔法注释，将拆分出的js命名为Form
+const Loading = () => import(/* webpackChunkName: "Loading" */ '@/views/elementUi/loading/Loading.vue') // webpack的魔法注释，将拆分出的js命名为Loading
 
 // 项目常用方案
 const Dialog = () => import(/* webpackChunkName: "Dialog" */ '@/views/self/Dialog.vue') // webpack的魔法注释，将拆分出的js命名为Dialog
@@ -22,39 +27,80 @@ const routes = [
     {
         path: '/elementUi',
         name: 'elementUi',
-        redirect: '/elementUi/layout',
+        redirect: '/elementUi/button',
         component: EmptyLayout,
         meta: {
             title: 'ElementUi',
         },
         children: [
             {
-                path: 'layout',
-                name: 'layout',
-                redirect: '/elementUi/layout/button',
+                path: 'button',
+                name: 'button',
+                component: Button,
+                meta: {
+                    title: "button及icon",
+                }
+            },
+            {
+                path: 'table',
+                name: 'table',
+                redirect: '/elementUi/layout/table/base',
                 component: EmptyLayout,
                 meta: {
-                    title: "常用组件",
+                    title: "表格",
                 },
                 children: [
                     {
-                        path: 'button',
-                        name: 'button',
-                        component: Button,
+                        path: 'base',
+                        name: 'base',
+                        component: Table,
                         meta: {
-                            title: "button及icon",
+                            title: "基础表格",
                         }
                     },
                     {
-                        path: 'table',
-                        name: 'table',
-                        component: Table,
+                        path: 'role',
+                        name: 'role',
+                        component: Role,
                         meta: {
-                            title: "表格",
-                        }
+                            title: "角色管理",
+                        },
+                    },
+                    {
+                        path: 'lineEdit',
+                        name: 'lineEdit',
+                        component: LineEdit,
+                        meta: {
+                            title: "行内编辑",
+                        },
                     },
                 ]
             },
+            {
+                path: 'map',
+                name: 'map',
+                component: Map,
+                meta: {
+                    title: "地图",
+                }
+            },
+            {
+                path: 'form',
+                name: 'form',
+                component: Form,
+                meta: {
+                    title: "表单",
+                }
+            },
+            {
+                path: 'loading',
+                name: 'loading',
+                component: Loading,
+                meta: {
+                    title: "loading",
+                }
+            },
+
         ]
     },
     {

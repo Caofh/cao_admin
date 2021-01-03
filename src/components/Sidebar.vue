@@ -1,31 +1,29 @@
 <template>
-  <div class="sidebar c-flex-y-start">
-    <!-- 子路由侧边栏 -->
-    <div
-      :class="['sidebar-item']"
-      :style="{
-        height:
-          item.show && item.children && item.children.length
-            ? (item.children.filter((item) => !item.hidden).length + 1) * 46 +
-              'px'
-            : '46px',
-      }"
-      v-for="(item, index) in children"
-      :key="index"
-    >
-      <template v-if="!item.hidden">
+  <el-collapse v-model="activeName" :class="['sidebar']">
+    <template v-if="!item.hidden" v-for="(item, index) in children">
+      <div v-if="!item.children" :class="['sidebar-item', `level-${level}`]">
         <div
           :class="[
             'title',
-            'c-flex-x-end',
             {
               selected:
                 curRoute.name === item.name ||
                 curRoute.meta.selectedRouteName === item.name,
             },
           ]"
+          :style="{
+            'padding-left': level * 20 + 'px',
+          }"
           @click="goPage(item)"
         >
+          <div
+            v-if="
+              curRoute.name === item.name ||
+              curRoute.meta.selectedRouteName === item.name
+            "
+            class="left-line"
+          ></div>
+
           {{ item.meta && item.meta.title ? item.meta.title : "" }}
 
           <img
@@ -34,15 +32,30 @@
             src="@/assets/img/odc/icon-down.png"
           />
         </div>
+      </div>
+      <el-collapse-item v-else :name="item.name">
+        <template slot="title">
+          <div
+            :class="['title', `level-${level}`]"
+            :style="{
+              'padding-left': level * 20 + 'px',
+            }"
+          >
+            {{ item.meta && item.meta.title ? item.meta.title : "" }}
+          </div>
+        </template>
 
-        <!-- 子路由(自己引自己实现递归，直接引用export default中的name属性即可) -->
-        <Sidebar
-          v-if="item.children && item.children.length"
-          :children="item.children"
-        ></Sidebar>
-      </template>
-    </div>
-  </div>
+        <template v-if="!item.hidden">
+          <!-- 子路由(自己引自己实现递归，直接引用export default中的name属性即可) -->
+          <Sidebar
+            v-if="item.children && item.children.length"
+            :children="item.children"
+            :level="level + 1"
+          ></Sidebar>
+        </template>
+      </el-collapse-item>
+    </template>
+  </el-collapse>
 </template>
 
 <script>
@@ -67,10 +80,16 @@ export default {
         return [];
       },
     },
+    // 当前路由级别
+    level: {
+      type: Number,
+      default: 1,
+    },
   },
   data() {
     return {
       // sidebar: [], // 侧边栏
+      activeName: "",
     };
   },
   watch: {
@@ -101,9 +120,7 @@ export default {
       this.children.map((item) => {
         // 自动打开折叠
         if (item.name === autoName) {
-          item.show = true;
-        } else {
-          item.show = false;
+          this.activeName = item.name;
         }
       });
 
@@ -113,10 +130,6 @@ export default {
     goPage(item) {
       // 如果含有子路由，不跳转，展开子路由视图
       if (item.children && item.children.length) {
-        item.show = !item.show;
-
-        this.$forceUpdate();
-
         return false;
       }
 
@@ -133,18 +146,51 @@ export default {
 <style lang="scss" scoped>
 .sidebar {
   width: 200px;
+  background: #fff;
+
+  /deep/ .el-collapse-item {
+    .el-collapse-item__header {
+      border-bottom: 1px solid #ebeef5;
+
+      .title {
+        width: 100%;
+
+        font-weight: 600;
+        color: #0672ff;
+        cursor: pointer;
+        text-align: left;
+        font-size: 14px;
+        line-height: 22px;
+        color: #333;
+        padding-right: 60px;
+      }
+    }
+
+    .el-collapse-item__wrap {
+      .el-collapse-item__content {
+        padding-bottom: 0;
+      }
+      .el-collapse {
+        border-top: none;
+        border-bottom: none;
+      }
+      .sidebar-item {
+        border-bottom: none;
+      }
+    }
+  }
 
   .sidebar-item {
+    position: relative;
     box-sizing: border-box;
     width: 100%;
-    // height: 46px;
     font-weight: 600;
     font-size: 14px;
     line-height: 22px;
     color: #0672ff;
     cursor: pointer;
-    // padding-right: 80px;
     text-align: right;
+    border-bottom: 1px solid #ebeef5;
 
     font-size: 14px;
     line-height: 22px;
@@ -153,12 +199,18 @@ export default {
     transition: $base-transition;
     overflow: hidden;
 
+    width: 100%;
+    height: 46px;
+
     .title {
-      position: relative;
+      // padding-right: 180px;
+
+      position: absolute;
       box-sizing: border-box;
       width: 100%;
       height: 46px;
-      padding-right: 80px;
+      text-align: left;
+      line-height: 46px;
 
       .icon-down {
         position: absolute;
@@ -174,10 +226,20 @@ export default {
         }
       }
 
+      .left-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: #0672ff;
+      }
+
       &.selected {
-        border-left: 4px solid #0672ff;
+        // border-left: 4px solid #0672ff;
         color: #0672ff;
         background: #c6dfff;
+        // background: #f5f5f5;
       }
     }
   }

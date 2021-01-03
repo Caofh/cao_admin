@@ -89,7 +89,9 @@ module.exports = {
         config.plugin('provide').use(webpack.ProvidePlugin, [{
             $: "n-zepto",
             Zepto: "n-zepto",
-            "window.Zepto": "n-zepto"
+            "window.Zepto": "n-zepto",
+            maptalks: "maptalks",
+            "window.maptalks": "maptalks",
         }]);
 
         config.module
