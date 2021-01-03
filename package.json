@@ -7,6 +7,7 @@
     "serve": "cross-env VUE_APP_ENV=development vue-cli-service serve",
     "test": "cross-env VUE_APP_ENV=test vue-cli-service build",
     "build": "cross-env VUE_APP_ENV=production vue-cli-service build",
+    "publish": "npm run build && scp -r /Users/bytedance/byte/person/cao_admin/dist root@118.190.207.166:/data/project_2020/front/project/cao_admin && open -a '/Applications/Google Chrome.app' 'http://front.tpdoc.cn/cao_admin/'",
     "report": "cross-env VUE_APP_ENV=report vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",

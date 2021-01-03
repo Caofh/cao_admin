@@ -13,14 +13,14 @@ let publicPath = '' // 静态资源引用路径
 let fontPublicPath = '' // 字体图标引用的cdn路径
 let imgPublicPath = '' // css引用图片的cdn路径（c2c/static/img）
 if (processEnv === 'production') {
-    publicPath = 'https://abc.com/c2c/shop' // 正式环境静态资源css、js等cdn路径
-    fontPublicPath = `https://abc.com/c2c/shop/${assetsDir ? assetsDir + '/' : '/'}fonts` // 正式环境字体图标引用的cdn路径
-    imgPublicPath = `https://abc.com/c2c/shop/${assetsDir ? assetsDir + '/' : '/'}/img` // 正式环境css引用图片的cdn路径
+    publicPath = 'http://front.tpdoc.cn/project/cao_admin/dist' // 正式环境静态资源css、js等cdn路径
+    fontPublicPath = `http://front.tpdoc.cn/project/cao_admin/dist` // 正式环境字体图标引用的cdn路径
+    imgPublicPath = `http://front.tpdoc.cn/project/cao_admin/dist` // 正式环境css引用图片的cdn路径
 } else if (processEnv === 'test') {
     // publicPath = './' // 正式环境静态资源css、js等cdn路径
-    publicPath = 'https://bcd.com/c2c/shop/dist' // 测试环境静态资源css、js等cdn路径
-    fontPublicPath = ''
-    imgPublicPath = ''
+    publicPath = 'http://front.tpdoc.cn/project/cao_admin/dist' // 测试环境静态资源css、js等cdn路径
+    fontPublicPath = 'http://front.tpdoc.cn/project/cao_admin/dist'
+    imgPublicPath = 'http://front.tpdoc.cn/project/cao_admin/dist'
 } else {
     publicPath = '/'
     fontPublicPath = ''

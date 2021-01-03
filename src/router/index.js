@@ -8,7 +8,7 @@ import { check } from './check'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  base: '/',
+  base: '/cao_admin',
   mode: 'history',
   routes
 })

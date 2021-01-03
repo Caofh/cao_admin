@@ -1,6 +1,9 @@
 # cao_admin
 基于elementUi和vue-cli的后台管理端项目
 
+## 示例地址
+[示例地址:http://front.tpdoc.cn/cao_admin/](http://front.tpdoc.cn/cao_admin/)
+
 ## 下载npm依赖包
 ```
 npm install
