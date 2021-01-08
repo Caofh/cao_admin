@@ -10,10 +10,10 @@ export default new Vuex.Store({
 
   },
   mutations: {
-    setCurRoute (state, payload) {
+    setCurRoute(state, payload) {
       state.curRoute = payload
     },
-    setAni (state, payload) {
+    setAni(state, payload) {
       state.ani = payload
     },
 
