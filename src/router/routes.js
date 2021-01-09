@@ -5,17 +5,21 @@
 const EmptyLayout = () => import(/* webpackChunkName: "EmptyLayout" */ '@/components/EmptyLayout.vue') // webpack的魔法注释，将拆分出的js命名为EmptyLayout
 
 // elementUi
-const Button = () => import(/* webpackChunkName: "Layout" */ '@/views/elementUi/button/Button.vue') // webpack的魔法注释，将拆分出的js命名为Layout
 const Table = () => import(/* webpackChunkName: "Table" */ '@/views/elementUi/table/Table.vue') // webpack的魔法注释，将拆分出的js命名为Table
 const Role = () => import(/* webpackChunkName: "Role" */ '@/views/elementUi/table/role/Role.vue') // webpack的魔法注释，将拆分出的js命名为Role
 const LineEdit = () => import(/* webpackChunkName: "LineEdit" */ '@/views/elementUi/table/LineEdit.vue') // webpack的魔法注释，将拆分出的js命名为LineEdit
 const Map = () => import(/* webpackChunkName: "Map" */ '@/views/elementUi/map/Map.vue') // webpack的魔法注释，将拆分出的js命名为Map
 const Form = () => import(/* webpackChunkName: "Form" */ '@/views/elementUi/form/Form.vue') // webpack的魔法注释，将拆分出的js命名为Form
 const Loading = () => import(/* webpackChunkName: "Loading" */ '@/views/elementUi/loading/Loading.vue') // webpack的魔法注释，将拆分出的js命名为Loading
+const Element = () => import(/* webpackChunkName: "Element" */ '@/views/elementUi/element/Element.vue') // webpack的魔法注释，将拆分出的js命名为Element
+const BetterScroll = () => import(/* webpackChunkName: "BetterScroll" */ '@/views/elementUi/betterScroll/BetterScroll.vue') // webpack的魔法注释，将拆分出的js命名为BetterScrpll
+const Verify = () => import(/* webpackChunkName: "Verify" */ '@/views/elementUi/verify/Verify.vue') // webpack的魔法注释，将拆分出的js命名为Verify
+const Edit = () => import(/* webpackChunkName: "Edit" */ '@/views/elementUi/editor/Index.vue') // webpack的魔法注释，将拆分出的js命名为Edit
+const WordCloud = () => import(/* webpackChunkName: "WordCloud" */ '@/views/elementUi/WordCloud.vue') // webpack的魔法注释，将拆分出的js命名为WordCloud
 
 // 项目常用方案
 const Dialog = () => import(/* webpackChunkName: "Dialog" */ '@/views/self/Dialog.vue') // webpack的魔法注释，将拆分出的js命名为Dialog
-const WordCloud = () => import(/* webpackChunkName: "WordCloud" */ '@/views/self/WordCloud.vue') // webpack的魔法注释，将拆分出的js命名为WordCloud
+
 
 const routes = [
 
@@ -27,24 +31,16 @@ const routes = [
     {
         path: '/elementUi',
         name: 'elementUi',
-        redirect: '/elementUi/button',
+        redirect: '/elementUi/table',
         component: EmptyLayout,
         meta: {
-            title: 'ElementUi',
+            title: '项目',
         },
         children: [
             {
-                path: 'button',
-                name: 'button',
-                component: Button,
-                meta: {
-                    title: "button及icon",
-                }
-            },
-            {
                 path: 'table',
                 name: 'table',
-                redirect: '/elementUi/layout/table/base',
+                redirect: '/elementUi/table/base',
                 component: EmptyLayout,
                 meta: {
                     title: "表格",
@@ -77,6 +73,14 @@ const routes = [
                 ]
             },
             {
+                path: 'wordCloud',
+                name: 'wordCloud',
+                component: WordCloud,
+                meta: {
+                    title: "词云",
+                },
+            },
+            {
                 path: 'map',
                 name: 'map',
                 component: Map,
@@ -100,6 +104,38 @@ const routes = [
                     title: "loading",
                 }
             },
+            {
+                path: 'element',
+                name: 'element',
+                component: Element,
+                meta: {
+                    title: "element组件",
+                }
+            },
+            {
+                path: 'betterScrpll',
+                name: 'betterScrpll',
+                component: BetterScroll,
+                meta: {
+                    title: "滚动",
+                }
+            },
+            {
+                path: 'Verify',
+                name: 'Verify',
+                component: Verify,
+                meta: {
+                    title: "验证码",
+                }
+            },
+            {
+                path: 'edit',
+                name: 'edit',
+                component: Edit,
+                meta: {
+                    title: "富文本",
+                }
+            },
 
         ]
     },
@@ -109,7 +145,7 @@ const routes = [
         redirect: '/self/dialog',
         component: EmptyLayout,
         meta: {
-            title: '项目常用方案',
+            title: '作者开发',
         },
         children: [
             {
@@ -118,14 +154,6 @@ const routes = [
                 component: Dialog,
                 meta: {
                     title: "弹窗",
-                },
-            },
-            {
-                path: 'wordCloud',
-                name: 'wordCloud',
-                component: WordCloud,
-                meta: {
-                    title: "词云",
                 },
             },
         ]

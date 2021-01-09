@@ -17,6 +17,12 @@ Object.keys(directives).map(key => {
 // 扩展常用公共方法
 import elementUiDialog from '@/utils/elementUiDialog.js'
 Object.assign(Vue.prototype, elementUiDialog)
+import * as base from '@/utils/indexBase.js'
+Object.assign(Vue.prototype, base)
+
+// 全局混入mixin方法
+import mixin from '@/mixins/install.js';
+Vue.use(mixin)
 
 import 'normalize.css'; // 引用基础兼容性css，normalize.css；文档：https://github.com/necolas/normalize.css
 import './assets/css/style/index.scss'; // 引用全局样式类

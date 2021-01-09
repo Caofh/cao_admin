@@ -124,6 +124,7 @@ body {
       .main-transition {
         box-sizing: border-box;
         width: 100%;
+        background: #fff;
 
         &.has-sidebar {
           width: calc(100% - 240px);

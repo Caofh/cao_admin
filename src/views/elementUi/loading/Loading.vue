@@ -125,11 +125,5 @@ export default {
     margin-right: 10px;
     margin-left: 0;
   }
-
-  .el-divider {
-    .el-divider__text {
-      background: #f5f5f5;
-    }
-  }
 }
 </style>
