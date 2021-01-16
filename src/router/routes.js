@@ -6,6 +6,7 @@ const EmptyLayout = () => import(/* webpackChunkName: "EmptyLayout" */ '@/compon
 
 // elementUi
 const Table = () => import(/* webpackChunkName: "Table" */ '@/views/elementUi/table/Table.vue') // webpack的魔法注释，将拆分出的js命名为Table
+const Table_v2 = () => import(/* webpackChunkName: "Table_v2" */ '@/views/elementUi/table/Table_v2.vue') // webpack的魔法注释，将拆分出的js命名为Table_v2
 const Role = () => import(/* webpackChunkName: "Role" */ '@/views/elementUi/table/role/Role.vue') // webpack的魔法注释，将拆分出的js命名为Role
 const LineEdit = () => import(/* webpackChunkName: "LineEdit" */ '@/views/elementUi/table/LineEdit.vue') // webpack的魔法注释，将拆分出的js命名为LineEdit
 const Map = () => import(/* webpackChunkName: "Map" */ '@/views/elementUi/map/Map.vue') // webpack的魔法注释，将拆分出的js命名为Map
@@ -16,9 +17,7 @@ const BetterScroll = () => import(/* webpackChunkName: "BetterScroll" */ '@/view
 const Verify = () => import(/* webpackChunkName: "Verify" */ '@/views/elementUi/verify/Verify.vue') // webpack的魔法注释，将拆分出的js命名为Verify
 const Edit = () => import(/* webpackChunkName: "Edit" */ '@/views/elementUi/editor/Index.vue') // webpack的魔法注释，将拆分出的js命名为Edit
 const WordCloud = () => import(/* webpackChunkName: "WordCloud" */ '@/views/elementUi/WordCloud.vue') // webpack的魔法注释，将拆分出的js命名为WordCloud
-
-// 项目常用方案
-const Dialog = () => import(/* webpackChunkName: "Dialog" */ '@/views/self/Dialog.vue') // webpack的魔法注释，将拆分出的js命名为Dialog
+const Dialog = () => import(/* webpackChunkName: "Dialog" */ '@/views/elementUi/dialog/Dialog.vue') // webpack的魔法注释，将拆分出的js命名为Dialog
 
 
 const routes = [
@@ -34,7 +33,7 @@ const routes = [
         redirect: '/elementUi/table',
         component: EmptyLayout,
         meta: {
-            title: '项目',
+            title: '组件',
         },
         children: [
             {
@@ -52,6 +51,14 @@ const routes = [
                         component: Table,
                         meta: {
                             title: "基础表格",
+                        }
+                    },
+                    {
+                        path: 'baseV2',
+                        name: 'baseV2',
+                        component: Table_v2,
+                        meta: {
+                            title: "筛选表格",
                         }
                     },
                     {
@@ -97,6 +104,14 @@ const routes = [
                 }
             },
             {
+                path: 'dialog',
+                name: 'dialog',
+                component: Dialog,
+                meta: {
+                    title: "弹窗",
+                }
+            },
+            {
                 path: 'loading',
                 name: 'loading',
                 component: Loading,
@@ -139,25 +154,25 @@ const routes = [
 
         ]
     },
-    {
-        path: '/self',
-        name: 'self',
-        redirect: '/self/dialog',
-        component: EmptyLayout,
-        meta: {
-            title: '作者开发',
-        },
-        children: [
-            {
-                path: 'dialog',
-                name: 'dialog',
-                component: Dialog,
-                meta: {
-                    title: "弹窗",
-                },
-            },
-        ]
-    },
+    // {
+    //     path: '/self',
+    //     name: 'self',
+    //     redirect: '/self/dialog',
+    //     component: EmptyLayout,
+    //     meta: {
+    //         title: '作者开发',
+    //     },
+    //     children: [
+    //         {
+    //             path: 'dialog',
+    //             name: 'dialog',
+    //             component: Dialog,
+    //             meta: {
+    //                 title: "弹窗",
+    //             },
+    //         },
+    //     ]
+    // },
 
 ]
 

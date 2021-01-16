@@ -46,7 +46,11 @@
     </div>
 
     <!-- 右边部分 -->
-    <div class="right">导航</div>
+    <div class="right">
+      <div class="avator">
+        <img src="http://erp.tpdoc.cn/uploads/image/cut_080300_8791.png" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -222,6 +226,17 @@ export default {
       border-radius: 2px;
 
       transition: $base-transition;
+    }
+  }
+
+  .right {
+    margin-right: 24px;
+    .avator {
+      width: 24px;
+      height: 24px;
+      @include imgBase {
+        border-radius: 50%;
+      }
     }
   }
 }

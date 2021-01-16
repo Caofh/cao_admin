@@ -9,3 +9,66 @@
   font-size: $size;
   color: $color;
 }
+
+@mixin clearFix {
+  display: block;
+  /*清除浮动样式类*/
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+@mixin fontWeight($size: 20px) {
+  font-size: $size;
+  font-weight: 600;
+  text-align: center;
+
+  @content;
+}
+@mixin fontLight($size: 14px) {
+  font-size: $size;
+  text-align: center;
+
+  @content;
+}
+@mixin radis() {
+  border: 1px solid #0672FF;
+  border-radius: 4px;
+
+  @content;
+}
+@mixin btn($width: 72px, $height: 34px, $size: 14px, $color: #0672ff) {
+  border: 1px solid #0672FF;
+  border-radius: 4px;
+  font-size: $size;
+  color: $color;
+  text-align: center;
+  width: $width;
+  height: $height;
+  cursor: pointer;
+
+  @content;
+}
+@mixin imgBase($width: 100%) {
+  position: relative;
+  & img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $width;
+    height: $width;
+
+    @content;
+  }
+}
+@mixin bgBase($width: 100%) {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @content;
+}
