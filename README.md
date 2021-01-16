@@ -8,7 +8,7 @@
 
 ## 地址
 
-- [🔥 管理端项目演示项目 vue2.x + element-ui ](http://front.tpdoc.cn/cao_admin/elementUi/form)
+- [🔥 管理端项目演示项目 vue2.x + element-ui ](http://front.tpdoc.cn/cao_admin/)
 
 <hr>
 
