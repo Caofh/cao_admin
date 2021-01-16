@@ -15,7 +15,7 @@ const devHost = {
 const testHost = {
   // 接口地址域名相关
   baseApi: 'http://tpdoc.cn:3001',
-  pluginsHost: `${host}`, // 第三方资源地址
+  pluginsHost: `${host}/project/cao_admin/dist`, // 第三方资源地址
 
 }
 
@@ -23,7 +23,7 @@ const testHost = {
 const proHost = {
   // 接口地址域名相关
   baseApi: 'http://tpdoc.cn:3001',
-  pluginsHost: `${host}`, // 第三方资源地址
+  pluginsHost: `${host}/project/cao_admin/dist`, // 第三方资源地址
 
 }
 
