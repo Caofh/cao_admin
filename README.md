@@ -8,7 +8,7 @@
 
 ## 地址
 
-- <a href="http://front.tpdoc.cn/cao_admin/" target="_blank">🔥 管理端项目演示项目 vue2.x + element-ui</a>
+- [🔥 管理端项目演示项目 vue2.x + element-ui ](http://front.tpdoc.cn/cao_admin/)
 
 <hr>
 
