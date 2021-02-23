@@ -18,6 +18,7 @@ const Verify = () => import(/* webpackChunkName: "Verify" */ '@/views/elementUi/
 const Edit = () => import(/* webpackChunkName: "Edit" */ '@/views/elementUi/editor/Index.vue') // webpack的魔法注释，将拆分出的js命名为Edit
 const WordCloud = () => import(/* webpackChunkName: "WordCloud" */ '@/views/elementUi/WordCloud.vue') // webpack的魔法注释，将拆分出的js命名为WordCloud
 const Dialog = () => import(/* webpackChunkName: "Dialog" */ '@/views/elementUi/dialog/Dialog.vue') // webpack的魔法注释，将拆分出的js命名为Dialog
+const CssVar = () => import(/* webpackChunkName: "CssVar" */ '@/views/elementUi/cssVar/CssVar.vue') // webpack的魔法注释，将拆分出的js命名为CssVar
 
 
 const routes = [
@@ -149,6 +150,14 @@ const routes = [
                 component: Edit,
                 meta: {
                     title: "富文本",
+                }
+            },
+            {
+                path: 'cssVar',
+                name: 'cssVar',
+                component: CssVar,
+                meta: {
+                    title: "css变量",
                 }
             },
 

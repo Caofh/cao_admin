@@ -18,6 +18,12 @@
         <el-button type="primary" @click="handleSave">保存</el-button>
       </el-form-item>
     </el-form>
+
+    <div class="web-url c-flex-x-start">
+      <span>官网：</span>
+      <a href="https://quilljs.com/" target="_blank">https://quilljs.com/</a>
+    </div>
+
     <el-dialog title="预览效果" :visible.sync="dialogTableVisible">
       <div style="min-height: 60vh">
         <h1 class="news-title">{{ form.title }}</h1>
@@ -163,6 +169,11 @@ export default {
 
   .editor {
     height: 200px;
+  }
+
+  .web-url {
+    font-weight: 600;
+    margin-left: 100px;
   }
 }
 </style>
