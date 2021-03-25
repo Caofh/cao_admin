@@ -14,6 +14,17 @@
   </div>
 </template>
 
+<style lang="scss" scoped>
+.CssVar-container {
+  .car-part {
+    height: 100px;
+    .car {
+      font-size: calc(var(--size) * 1px);
+    }
+  }
+}
+</style>
+
 <script>
 import VarLoading from "./components/var-loading/Index.vue";
 
@@ -60,13 +71,3 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-.CssVar-container {
-  .car-part {
-    height: 100px;
-    .car {
-      font-size: calc(var(--size) * 1px);
-    }
-  }
-}
-</style>
